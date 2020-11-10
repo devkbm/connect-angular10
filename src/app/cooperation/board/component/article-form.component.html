@@ -61,7 +61,9 @@
       닫기
   </button>
   <nz-divider nzType="vertical"></nz-divider>
-  <button nz-button nzType="primary" nz-popconfirm nzTitle="저장하시겠습니까?"
+  <button nz-button nzType="primary"
+    nz-popconfirm
+    nzPopconfirmTitle="저장하시겠습니까?"
       (nzOnConfirm)="saveArticle()" (nzOnCancel)="false">
       <i nz-icon nzType="save" theme="outline"></i>
       저장

@@ -5,7 +5,7 @@ import { ResponseList } from '../../../../common/model/response-list';
 import { WorkGroupService } from '../../service/workgroup.service';
 import { WorkGroupSchedule } from '../../model/workgroup-schedule';
 
-import { FullCalendarComponent } from '@fullcalendar/angular';
+import { EventInput, FullCalendarComponent } from '@fullcalendar/angular';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
@@ -31,17 +31,19 @@ export class WorkCalendarComponent implements OnInit {
     toDate: Date;
 
     calendarPlugins = [dayGridPlugin, timeGridPlugin, listPlugin, interactionPlugin];
-    calendarHeader = {
-        left: 'prev,next today',
-        center: 'title',
-        //right: ''
-        right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
-    };
 
     calendarOptions: CalendarOptions = {
       locale: koLocale,
+      headerToolbar: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+      },
       initialView: 'dayGridMonth',
-      dateClick: this.onDateClick.bind(this)
+      events: this.calEvent, // alternatively, use the `events` setting to fetch from a feed
+      selectable: true,
+      dateClick: this.onDateClick.bind(this),
+      datesSet: this.onDatesRender.bind(this)
     };
 
     @Output() itemSelected = new EventEmitter();
@@ -103,15 +105,16 @@ export class WorkCalendarComponent implements OnInit {
     }
 
     onDatesRender(param): void {
-        const endDate: Date = param.view.currentEnd;
-        endDate.setDate(endDate.getDate() - 1);
+      console.log(param.view.activeEnd);
+      const endDate: Date = param.view.activeEnd;
+      endDate.setDate(endDate.getDate() - 1);
 
-        this.fromDate = param.view.currentStart;
-        this.toDate = endDate;
-        // console.log(param.view.currentStart);
-        // console.log(param.view.currentEnd);
-        // console.log(endDate);
-        this.getScheduleList(this.fkWorkGroup);
+      this.fromDate = param.view.activeStart;
+      this.toDate = endDate;
+      // console.log(param.view.currentStart);
+      // console.log(param.view.currentEnd);
+      // console.log(endDate);
+      this.getScheduleList(this.fkWorkGroup);
     }
 
 

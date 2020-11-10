@@ -20,6 +20,7 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 import { NzTabsModule } from 'ng-zorro-antd/tabs';
 import { NzRadioModule } from 'ng-zorro-antd/radio';
+import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 
 @NgModule({
   exports: [
@@ -42,7 +43,8 @@ import { NzRadioModule } from 'ng-zorro-antd/radio';
     NzTreeSelectModule,
     NzUploadModule,
     NzTabsModule,
-    NzRadioModule
+    NzRadioModule,
+    NzPopconfirmModule
   ]
 })
 export class AllNgZorroModule { }
