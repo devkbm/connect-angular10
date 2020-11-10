@@ -1,0 +1,24 @@
+<nz-card class="card-info" [nzCover]="coverTemplate" [nzBordered]="false">
+    <nz-card-meta
+      [nzAvatar]="avatarTemplate"
+      [nzTitle]="user.name + '(' + user.userId + ')'"
+      [nzDescription]="user.modifiedBy">
+    </nz-card-meta>
+</nz-card>
+<ng-template #avatarTemplate>
+    <nz-avatar class="avatar" [nzShape]="'square'" [nzSize]='96' [nzSrc]="imgSrc"></nz-avatar>
+</ng-template>
+<ng-template #coverTemplate>
+  <img alt="example" src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png" />
+</ng-template>
+
+<nz-descriptions nzTitle="User Info" nzBordered>
+  <nz-descriptions-item nzTitle="사진"><nz-avatar class="avatar" [nzShape]="'square'" [nzSize]='96' [nzSrc]="imgSrc"></nz-avatar></nz-descriptions-item>
+  <nz-descriptions-item nzTitle="아이디">{{user.userId}}</nz-descriptions-item>
+  <nz-descriptions-item nzTitle="이름">{{user.name}}</nz-descriptions-item>
+  <nz-descriptions-item nzTitle="모바일">{{user.mobileNum}}</nz-descriptions-item>
+  <nz-descriptions-item nzTitle="이메일">{{user.email}}</nz-descriptions-item>
+</nz-descriptions>
+
+
+{{user | json}}
