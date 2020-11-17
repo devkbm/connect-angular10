@@ -59,7 +59,7 @@
             <nz-form-explain *ngIf="termForm.get('abbreviationEng').dirty && termForm.get('abbreviationEng').errors">The input is Required!</nz-form-explain>
             -->
         </nz-form-control>
-    </nz-form-item>    
+    </nz-form-item>
 
     <nz-form-item>
         <nz-form-label nzFor="description" [nzSm]="6" [nzXs]="24">설명</nz-form-label>
@@ -78,31 +78,21 @@
 </form>
 
 <div class="footer">
-    <button
-        nz-button
-        (click)="closeForm()">
+    <button nz-button (click)="closeForm()">
         <i nz-icon type="form" theme="outline"></i>
         닫기
     </button>
     <nz-divider nzType="vertical"></nz-divider>
-    <button
-        nz-button
-        nzType="primary"
-        nz-popconfirm
-        nzTitle="저장하시겠습니까?"
-        (nzOnConfirm)="submitTerm()"
-        (nzOnCancel)="false">
+    <button nz-button nzType="primary"
+        nz-popconfirm nzPopconfirmTitle="저장하시겠습니까?"
+        (nzOnConfirm)="submitTerm()" (nzOnCancel)="false">
         <i nz-icon type="save" theme="outline"></i>
         저장
     </button>
     <nz-divider nzType="vertical"></nz-divider>
-    <button
-        nz-button
-        nzType="danger"
-        nz-popconfirm
-        nzTitle="삭제하시겠습니까?"
-        (nzOnConfirm)="deleteTerm()"
-        (nzOnCancel)="false">
+    <button nz-button nzType="danger"
+        nz-popconfirm nzPopconfirmTitle="삭제하시겠습니까?"
+        (nzOnConfirm)="deleteTerm()" (nzOnCancel)="false">
         <i nz-icon type="delete" theme="outline"></i>
         삭제
     </button>

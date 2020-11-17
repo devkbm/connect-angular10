@@ -17,27 +17,19 @@
     </div>
 
     <div nz-col [nzSpan]="12" style="text-align: right;">
-        <button
-            nz-button
-            (click)="getAuthorityList()">
+        <button nz-button (click)="getAuthorityList()">
             <i nz-icon nzType="search" theme="outline"></i>
             조회
         </button>
         <nz-divider nzType="vertical"></nz-divider>
-        <button
-            nz-button
-            (click)="initForm()">
+        <button nz-button (click)="initForm()">
             <i nz-icon nzType="form" theme="outline"></i>
             신규
         </button>
         <nz-divider nzType="vertical"></nz-divider>
-        <button
-            nz-button
-            nzDanger
-            nz-popconfirm
-            nzTitle="삭제하시겠습니까?"
-            (nzOnConfirm)="deleteAuthority()"
-            (nzOnCancel)="false">
+        <button nz-button nzDanger
+            nz-popconfirm nzPopconfirmTitle="삭제하시겠습니까?"
+            (nzOnConfirm)="deleteAuthority()" (nzOnCancel)="false">
             <i nz-icon nzType="delete" theme="outline"></i>
             삭제
         </button>

@@ -1,18 +1,18 @@
 <nz-page-header (nzBack)="goBack()" nzBackIcon nzTitle="부서코드 등록" nzSubtitle="This is a subtitle"> </nz-page-header>
 
 <!--조회 조건-->
-<div nz-row class="btn-group">  
+<div nz-row class="btn-group">
   <div nz-col [nzSpan]="12">
     <nz-input-group nzSearch [nzSuffix]="suffixIconSearch">
       <input type="text" style="ime-mode:normal;" [(ngModel)]="queryValue" nz-input placeholder="input search text">
-    </nz-input-group>          
+    </nz-input-group>
     <ng-template #suffixIconSearch>
       <i nz-icon nzType="search"></i>
     </ng-template>
   </div>
-  <div nz-col [nzSpan]="12" style="text-align: right;">    
+  <div nz-col [nzSpan]="12" style="text-align: right;">
     <button nz-button (click)="getDeptTree()">
-      <i nz-icon nzType="search"></i>      
+      <i nz-icon nzType="search"></i>
       조회
     </button>
     <nz-divider nzType="vertical"></nz-divider>
@@ -21,22 +21,22 @@
       신규
     </button>
     <nz-divider nzType="vertical"></nz-divider>
-    <button nz-button nzType="primary" 
-      nz-popconfirm nzTitle="저장하시겠습니까?" 
+    <button nz-button nzType="primary"
+      nz-popconfirm nzPopconfirmTitle="저장하시겠습니까?"
       (nzOnConfirm)="saveDept()" (nzOnCancel)="false">
       <i nz-icon nzType="save" theme="outline"></i>
       저장
-    </button> 
-    <nz-divider nzType="vertical"></nz-divider>          
-    <button nz-button nzType="danger" 
-      nz-popconfirm nzTitle="삭제하시겠습니까?" 
+    </button>
+    <nz-divider nzType="vertical"></nz-divider>
+    <button nz-button nzDanger
+      nz-popconfirm nzPopconfirmTitle="삭제하시겠습니까?"
       (nzOnConfirm)="deleteDept()" (nzOnCancel)="false">
       <i nz-icon nzType="delete" theme="outline"></i>
       삭제
-    </button>    
+    </button>
   </div>
 </div>
-      
+
 <!-- -->
 <h3 class="pgm-title">부서코드 목록</h3>
 
@@ -45,8 +45,8 @@
     #deptTree
     id="deptTree"
     [searchValue]="queryValue"
-    (itemSelected)="selectedItem($event)">              
-  </app-dept-tree>      
+    (itemSelected)="selectedItem($event)">
+  </app-dept-tree>
 
   <app-dept-form
     id="deptForm"
@@ -55,4 +55,3 @@
     (formDeleted)="getDeptTree()">
   </app-dept-form>
 </div>
-      

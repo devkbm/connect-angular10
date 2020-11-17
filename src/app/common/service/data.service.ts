@@ -3,14 +3,14 @@ import { HttpClient, HttpHeaders, HttpParams, HttpXsrfTokenExtractor } from '@an
 import { Observable, of } from 'rxjs';
 import { GlobalProperty } from 'src/app/global-property';
 
-//@Injectable()
+// @Injectable()
 export class DataService {
-    
-    protected responseMap =  (res: Response) => res;    
+
+    protected responseMap =  (res: Response) => res;
     protected serverUrl;
     protected API_URL;
 
-    constructor(protected API_URI: string, protected http: HttpClient, protected tokenExtractor: HttpXsrfTokenExtractor) { 
+    constructor(protected API_URI: string, protected http: HttpClient, protected tokenExtractor: HttpXsrfTokenExtractor) {
         this.serverUrl = GlobalProperty.serverUrl;
         this.API_URL = this.serverUrl + API_URI;
     }
@@ -21,7 +21,7 @@ export class DataService {
      */
     protected getHttpHeaders(): HttpHeaders {
         const token = this.tokenExtractor.getToken() as string;
-        
+
         return new HttpHeaders()
             //.set('X-XSRF-TOKEN', token)
             .set('Content-Type', 'application/json');
@@ -33,7 +33,7 @@ export class DataService {
      */
     protected getAuthorizedHttpHeaders(): HttpHeaders {
         const token = this.tokenExtractor.getToken() as string;
-        
+
         return new HttpHeaders()
             .set('Content-Type', 'application/json')
             .set('X-Requested-With', 'XMLHttpRequest')

@@ -22,32 +22,32 @@ export class AuthorityComponent extends AppBase implements OnInit {
   @ViewChild('authForm', {static: false})
   form: AuthorityFormComponent;
 
-  constructor(location: Location) { 
-    super(location); 
+  constructor(location: Location) {
+    super(location);
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
-  closeDrawer() {
+  closeDrawer(): void {
     this.drawerVisible = false;
   }
 
-  openDrawer() {
+  openDrawer(): void {
     this.drawerVisible = true;
   }
 
-  selectedItem(item) {
+  selectedItem(item): void {
     this.form.fg.patchValue(item);
   }
 
-  editDrawOpen(item) {
+  editDrawOpen(item): void {
     this.form.getAuthority(item.authority);
 
     this.openDrawer();
   }
 
-  getAuthorityList() {
+  getAuthorityList(): void {
     let params = null;
     if ( this.queryValue !== '') {
       params = new Object();
@@ -58,11 +58,11 @@ export class AuthorityComponent extends AppBase implements OnInit {
     this.grid.getAuthority(params);
   }
 
-  deleteAuthority() {
+  deleteAuthority(): void {
     this.form.deleteAuthority();
   }
 
-  initForm() {
+  initForm(): void {
     this.form.newForm();
     this.openDrawer();
   }

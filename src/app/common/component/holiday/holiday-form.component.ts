@@ -53,13 +53,13 @@ export class HolidayFormComponent extends FormBase implements OnInit {
       comment       : [ null ]
     });
 
-    this.newForm();
+    this.newForm(null);
   }
 
-  public newForm(): void {
+  public newForm(date: Date): void {
     this.formType = FormType.NEW;
-
     this.fg.reset();
+    this.fg.get('date').setValue(date);
   }
 
   public modifyForm(formData: Holiday): void {
@@ -76,7 +76,7 @@ export class HolidayFormComponent extends FormBase implements OnInit {
               if ( model.total > 0 ) {
                 this.modifyForm(model.data);
               } else {
-                this.newForm();
+                this.newForm(null);
               }
               this.appAlarmService.changeMessage(model.message);
             },

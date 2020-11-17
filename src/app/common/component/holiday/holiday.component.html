@@ -18,27 +18,19 @@
     </ng-template>
   </div>
   <div nz-col [nzSpan]="12" style="text-align: right;">
-    <button
-      nz-button
-      (click)="getHolidayList()">
+    <button nz-button (click)="getHolidayList()">
       <i nz-icon nzType="search"></i>
       조회
     </button>
     <nz-divider nzType="vertical"></nz-divider>
-    <button
-      nz-button
-      (click)="initForm()">
+    <button nz-button (click)="initForm()">
       <i nz-icon nzType="form" theme="outline"></i>
       신규
     </button>
     <nz-divider nzType="vertical"></nz-divider>
-    <button
-      nz-button
-      nzType="danger"
-      nz-popconfirm
-      nzTitle="삭제하시겠습니까?"
-      (nzOnConfirm)="deleteProgram()"
-      (nzOnCancel)="false">
+    <button nz-button nzDanger="true"
+      nz-popconfirm nzPopconfirmTitle="삭제하시겠습니까?"
+      (nzOnConfirm)="deleteProgram()" (nzOnCancel)="false">
       <i nz-icon nzType="delete" theme="outline"></i>
       삭제
     </button>
@@ -65,10 +57,9 @@
     nzTitle="휴일 등록"
     (nzOnClose)="closeDrawer()">
     <app-holiday-form
-      #holidayForm
+      id="holidayForm" #holidayForm
       (formSaved)="getHolidayList()"
       (formDeleted)="getHolidayList()"
       (formClosed)="closeDrawer()">
-
     </app-holiday-form>
 </nz-drawer>

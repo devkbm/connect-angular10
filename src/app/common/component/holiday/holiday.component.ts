@@ -11,22 +11,24 @@ import { HolidayFormComponent } from './holiday-form.component';
 })
 export class HolidayComponent extends AppBase implements OnInit {
 
-  drawerVisible = false;
-
-  queryKey = 'resourceCode';
-  queryValue = '';
-
   @ViewChild('holidayGrid', {static: false})
   grid: HolidayGridComponent;
 
   @ViewChild('holidayForm', {static: false})
   form: HolidayFormComponent;
 
+  drawerVisible = false;
+
+  queryKey = 'resourceCode';
+  queryValue = '';
+
+  selectedRow;
+
   constructor(location: Location, private datePipe: DatePipe) {
     super(location);
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
   openDrawer(): void {
@@ -49,7 +51,7 @@ export class HolidayComponent extends AppBase implements OnInit {
   }
 
   initForm(): void {
-    this.form.newForm();
+    this.form.newForm(this.selectedRow.date);
     this.openDrawer();
   }
 
@@ -62,7 +64,7 @@ export class HolidayComponent extends AppBase implements OnInit {
   }
 
   selectedItem(item): void {
-    // this.form.programForm.patchValue(item);
+    this.selectedRow = item;
   }
 
   editDrawerOpen(item): void {

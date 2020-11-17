@@ -32,7 +32,7 @@ export class HolidayGridComponent extends AggridFunction implements OnInit {
       {
         headerName: '',
         width: 34,
-        cellStyle: {'text-align': 'center', 'padding': '0px'},
+        cellStyle: {'text-align': 'center', padding: '0px'},
         cellRenderer: 'buttonRenderer',
         cellRendererParams: {
           onClick: this.onEditButtonClick.bind(this),
@@ -58,15 +58,15 @@ export class HolidayGridComponent extends AggridFunction implements OnInit {
     };
 
     this.getRowNodeId = (data) => {
-        return data.dutyCode;
+        return data.date;
     };
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.getGridList();
   }
 
-  private onEditButtonClick(e) {
+  private onEditButtonClick(e): void {
     this.editButtonClicked.emit(e.rowData);
   }
 
@@ -90,13 +90,13 @@ export class HolidayGridComponent extends AggridFunction implements OnInit {
         );
   }
 
-  selectionChanged(event) {
+  selectionChanged(event): void {
     const selectedRows = this.gridApi.getSelectedRows();
 
     this.rowSelected.emit(selectedRows[0]);
   }
 
-  rowDbClicked(event) {
+  rowDbClicked(event): void {
     this.rowDoubleClicked.emit(event.data);
   }
 
