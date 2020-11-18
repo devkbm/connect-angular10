@@ -26,7 +26,7 @@ export class TermService extends DataService {
      };
 
     return this.http.get<ResponseList<Term>>(url, options).pipe(
-      catchError((err) => Observable.throw(err))
+      catchError(this.handleError<ResponseList<Term>>('getTermList', null))
     );
   }
 
@@ -38,24 +38,24 @@ export class TermService extends DataService {
    };
 
     return this.http.get<ResponseObject<Term>>(url, options).pipe(
-      catchError((err) => Observable.throw(err))
+      catchError(this.handleError<ResponseObject<Term>>('getTerm', null))
     );
   }
 
   registerTerm(term: Term): Observable<ResponseObject<Term>> {
-    const url = `${this.API_URI}`;
+    const url = `http://localhost:8090/common/terms`;
     const options = {
       headers: this.getAuthorizedHttpHeaders(),
       withCredentials: true
     };
-
+    console.log(url);
     return this.http.post<ResponseObject<Term>>(url, term, options).pipe(
-      catchError((err) => Observable.throw(err))
+      catchError(this.handleError<ResponseObject<Term>>('registerTerm', null))
     );
   }
 
   deleteTerm(id: string): Observable<ResponseObject<Term>> {
-    const url = `${this.API_URI}/${id}`;
+    const url = `http://localhost:8090/common/terms/${id}`;
     const options = {
       headers: this.getAuthorizedHttpHeaders(),
       withCredentials: true
@@ -64,7 +64,7 @@ export class TermService extends DataService {
     return this.http
               .delete<ResponseObject<Term>>(url, options)
               .pipe(
-                catchError((err) => Observable.throw(err))
+                catchError(this.handleError<ResponseObject<Term>>('deleteTerm', null))
               );
   }
 

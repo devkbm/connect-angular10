@@ -52,7 +52,7 @@ export class ProgramFormComponent extends FormBase implements OnInit {
               private commCodeService: CommonCodeService,
               private appAlarmService: AppAlarmService) { super(); }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.fg = this.fb.group({
       resourceCode  : new FormControl(null, {
                                               validators: Validators.required,
@@ -68,7 +68,7 @@ export class ProgramFormComponent extends FormBase implements OnInit {
     this.getCommonCodeList();
     this.newForm();
   }
-  private getCommonCodeList() {
+  private getCommonCodeList(): void {
     this.commCodeService
       .getCommonCodeListByParentId('COM0001')
       .subscribe(
@@ -92,18 +92,18 @@ export class ProgramFormComponent extends FormBase implements OnInit {
     this.formType = FormType.NEW;
 
     this.fg.reset();
-    this.fg.controls['resourceCode'].enable();
+    this.fg.get('resourceCode').enable();
   }
 
   public modifyForm(formData: WebResource): void {
     this.formType = FormType.MODIFY;
 
-    this.fg.controls['resourceCode'].disable();
+    this.fg.get('resourceCode').disable();
 
     this.fg.patchValue(formData);
   }
 
-  public getProgram(id: string) {
+  public getProgram(id: string): void {
     this.programService
       .getProgram(id)
       .subscribe(
@@ -123,7 +123,7 @@ export class ProgramFormComponent extends FormBase implements OnInit {
       );
   }
 
-  public submitProgram() {
+  public submitProgram(): void {
     this.programService
         .registerProgram(this.fg.getRawValue())
         .subscribe(
@@ -138,7 +138,7 @@ export class ProgramFormComponent extends FormBase implements OnInit {
         );
   }
 
-  public deleteProgram() {
+  public deleteProgram(): void {
     this.programService
       .deleteProgram(this.fg.get('resourceCode').value)
       .subscribe(
@@ -153,7 +153,7 @@ export class ProgramFormComponent extends FormBase implements OnInit {
       );
   }
 
-  public closeForm() {
+  public closeForm(): void {
     this.formClosed.emit(this.fg.getRawValue());
   }
 

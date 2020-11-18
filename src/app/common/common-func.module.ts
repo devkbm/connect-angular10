@@ -1,4 +1,3 @@
-
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
@@ -57,6 +56,7 @@ import { MenuComponent } from './component/menu/menu.component';
 import { TermComponent } from './component/terms/term.component';
 import { TermGridComponent } from './component/terms/term-grid.component';
 import { TermFormComponent } from './component/terms/term-form.component';
+import { TermService } from './service/term.service';
 import { CommonCodeFormComponent } from './component/commoncode/common-code-form.component';
 import { CommonCodeService } from './service/common-code.service';
 import { CommonCodeGridComponent } from './component/commoncode/common-code-grid.component';
@@ -159,6 +159,7 @@ import { DeptSelectComponent } from './component/dept/dept-select.component';
     MenuService,
     DeptService,
     HolidayService,
+    TermService,
     NzModalService
   ],
   exports: [

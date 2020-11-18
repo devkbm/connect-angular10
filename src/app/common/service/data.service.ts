@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders, HttpParams, HttpXsrfTokenExtractor } from '@an
 import { Observable, of } from 'rxjs';
 import { GlobalProperty } from 'src/app/global-property';
 
-// @Injectable()
+@Injectable()
 export class DataService {
 
     protected responseMap =  (res: Response) => res;

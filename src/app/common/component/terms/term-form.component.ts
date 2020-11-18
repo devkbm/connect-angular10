@@ -34,7 +34,7 @@ export class TermFormComponent implements OnInit {
               private termService: TermService,
               private appAlarmService: AppAlarmService) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
 
     this.fg = this.fb.group({
       pkTerm            : [ null ],
@@ -49,7 +49,7 @@ export class TermFormComponent implements OnInit {
     });
   }
 
-  public getTerm() {
+  public getTerm(): void {
     this.termService
       .getTerm(this.fg.get('pkTerm').value)
       .subscribe(
@@ -68,7 +68,7 @@ export class TermFormComponent implements OnInit {
       );
   }
 
-  public submitTerm() {
+  public submitTerm(): void {
     this.termService
         .registerTerm(this.fg.getRawValue())
         .subscribe(
@@ -83,7 +83,7 @@ export class TermFormComponent implements OnInit {
         );
   }
 
-  public deleteTerm() {
+  public deleteTerm(): void {
     this.termService
       .deleteTerm(this.fg.get('pkTerm').value)
       .subscribe(
@@ -98,7 +98,7 @@ export class TermFormComponent implements OnInit {
       );
   }
 
-  public closeForm() {
+  public closeForm(): void {
     this.formClosed.emit(this.fg.getRawValue());
   }
 
