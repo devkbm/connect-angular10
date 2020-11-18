@@ -62,14 +62,13 @@
   </button>
   <nz-divider nzType="vertical"></nz-divider>
   <button nz-button nzType="primary"
-    nz-popconfirm
-    nzPopconfirmTitle="저장하시겠습니까?"
+      nz-popconfirm nzPopconfirmTitle="저장하시겠습니까?"
       (nzOnConfirm)="saveArticle()" (nzOnCancel)="false">
       <i nz-icon nzType="save" theme="outline"></i>
       저장
   </button>
   <nz-divider nzType="vertical"></nz-divider>
-  <button nz-button nzType="danger" nz-popconfirm nzTitle="삭제하시겠습니까?"
+  <button nz-button nzType="danger" nz-popconfirm nzPopconfirmTitle="삭제하시겠습니까?"
       (nzOnConfirm)="deleteArticle(fg.get('pkArticle').value)" (nzOnCancel)="false">
       <i nz-icon nzType="delete" theme="outline"></i>
       삭제

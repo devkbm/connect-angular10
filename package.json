@@ -31,7 +31,7 @@
     "ag-grid-angular": "^24.1.0",
     "ag-grid-community": "^24.1.0",
     "file-saver": "^2.0.2",
-    "ng-zorro-antd": "^10.1.1",
+    "ng-zorro-antd": "^10.1.2",
     "ngx-color-picker": "^10.1.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",

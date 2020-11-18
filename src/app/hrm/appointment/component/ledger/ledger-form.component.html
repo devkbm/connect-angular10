@@ -1,0 +1,89 @@
+{{fg.value | json}}
+<form nz-form [formGroup]="fg" nzLayout="vertical">    
+
+    <div nz-row nzGutter="8">
+        <div nz-col nzSpan="12">
+            <!--발령번호 필드 (생성)-->
+            <nz-form-item class="form-item">
+                <nz-form-label nzFor="ledgerId" nzRequired [nzXs]="formLabelXs" [nzSm]="formLabelSm">발령번호</nz-form-label>
+                <nz-form-control [nzXs]="formControlXs" [nzSm]="formControlSm">
+                    <input nz-input id="ledgerId" formControlName="ledgerId" placeholder="발령번호를 입력해주세요.">
+                    <!--
+                    <nz-form-explain *ngIf="isFieldErrors(fg,'ledgerId','required')">The input is Required!</nz-form-explain>
+                    -->
+                </nz-form-control>
+            </nz-form-item>            
+        </div>
+
+        <div nz-col nzSpan="12">
+            <!--발령유형 필드-->
+            <nz-form-item class="form-item">
+                <nz-form-label nzFor="appointmentType" nzRequired [nzXs]="formLabelXs" [nzSm]="formLabelSm">발령유형</nz-form-label>
+                <nz-form-control [nzXs]="formControlXs" [nzSm]="formControlSm">
+                    <input nz-input id="appointmentType" formControlName="appointmentType" placeholder="발령유형을 입력해주세요.">
+                    <!--
+                    <nz-form-explain *ngIf="isFieldErrors(fg,'appointmentType','required')">The input is Required!</nz-form-explain>
+                    -->
+                </nz-form-control>
+            </nz-form-item>
+        </div>
+    </div>                
+
+    <!--시작일 필드-->
+    <nz-form-item class="form-item">
+        <nz-form-label nzFor="registrationDate" [nzXs]="formLabelXs" [nzSm]="formLabelSm">발령등록일</nz-form-label>
+        <nz-form-control [nzXs]="formControlXs" [nzSm]="formControlSm">
+            <nz-date-picker id="registrationDate" formControlName="registrationDate" nzFormat="yyyy-MM-dd" style="width: 130px"></nz-date-picker>            
+        </nz-form-control>
+    </nz-form-item>
+    
+    
+    <!--비고 필드-->
+    <nz-form-item>
+        <nz-form-label nzFor="comment" [nzXs]="formLabelXs" [nzSm]="formLabelSm">비고</nz-form-label>
+        <nz-form-control [nzXs]="formControlXs" [nzSm]="formControlSm">
+            <textarea nz-input id="comment" formControlName="comment" placeholder="비고를 입력해주세요." [nzAutosize]="{ minRows: 10, maxRows: 20 }"></textarea>
+        </nz-form-control>
+    </nz-form-item> 
+
+</form>
+
+<div class="footer">
+    <button
+        nz-button
+        (click)="getForm(this.fg.get('ledgerId').value)">
+        <i nz-icon nzType="search" nzTheme="outline"></i>        
+        조회
+    </button>    
+    <nz-divider nzType="vertical"></nz-divider>
+    <button
+        nz-button
+        (click)="closeForm()">
+        <i nz-icon nzType="form" theme="outline"></i>
+        닫기
+    </button>    
+    <nz-divider nzType="vertical"></nz-divider>
+    <button
+        nz-button
+        nzType="primary"
+        nz-popconfirm
+        nzTitle="저장하시겠습니까?"
+        (nzOnConfirm)="submitForm()"
+        (nzOnCancel)="false">
+        <i nz-icon nzType="save" theme="outline"></i>
+        저장
+    </button>
+    <nz-divider nzType="vertical"></nz-divider>
+    <button
+        nz-button
+        nzType="danger"
+        nz-popconfirm
+        nzTitle="삭제하시겠습니까?"
+        (nzOnConfirm)="deleteForm()"
+        (nzOnCancel)="false">
+        <i nz-icon nzType="delete" theme="outline"></i>
+        삭제
+    </button>
+
+</div>
+

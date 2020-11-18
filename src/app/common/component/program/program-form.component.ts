@@ -74,11 +74,7 @@ export class ProgramFormComponent extends FormBase implements OnInit {
       .subscribe(
         (model: ResponseList<CommonCode>) => {
           if ( model.total > 0 ) {
-            //this.modifyForm(model.data);
-            console.log(model.data);
             this.resourceTypeList = model.data;
-          } else {
-            //this.newForm();
           }
           this.appAlarmService.changeMessage(model.message);
         },

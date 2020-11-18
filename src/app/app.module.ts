@@ -23,6 +23,9 @@ import { BoardModule } from './cooperation/board/board.module';
 import { CommunicationModule } from './cooperation/communication/communication.module';
 import { SurveyModule } from './cooperation/survey/survey.module';
 import { WorkgroupModule } from './cooperation/workgroup/workgroup.module';
+import { AppointmentModule } from './hrm/appointment/appointment.module';
+import { DutyModule } from './hrm/duty/duty.module';
+import { EmployeeModule } from './hrm/employee/employee.module';
 
 registerLocaleData(ko);
 
@@ -48,7 +51,10 @@ registerLocaleData(ko);
     BoardModule,
     CommunicationModule,
     SurveyModule,
-    WorkgroupModule
+    WorkgroupModule,
+    AppointmentModule,
+    EmployeeModule,
+    DutyModule
   ],
   providers: [
     { provide: NZ_I18N, useValue: ko_KR },

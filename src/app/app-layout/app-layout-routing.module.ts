@@ -16,6 +16,14 @@ import { TeamComponent } from '../cooperation/communication/component/team.compo
 import { BoardComponent } from '../cooperation/board/component/board.component';
 import { SurveyFormComponent } from '../cooperation/survey/component/survey-form.component';
 import { WorkgroupComponent } from '../cooperation/workgroup/component/workgroup/workgroup.component';
+import { AppointmentCodeComponent } from '../hrm/appointment/component/appointment-code/appointment-code.component';
+import { HrmRelationCodeComponent } from '../hrm/appointment/component/hrm-type/hrm-relation-code.component';
+import { HrmTypeComponent } from '../hrm/appointment/component/hrm-type/hrm-type.component';
+import { LedgerComponent } from '../hrm/appointment/component/ledger/ledger.component';
+import { DutyApplicationComponent } from '../hrm/duty/component/duty-application/duty-application.component';
+import { DutyCodeComponent } from '../hrm/duty/component/duty-code/duty-code.component';
+import { EmployeeMasterComponent } from '../hrm/employee/component/basic-info/employee-master.component';
+import { DeptEmployeeListComponent } from '../hrm/employee/component/dept-employee-list/dept-employee-list.component';
 
 const layoutroutes: Routes = [
   {
@@ -34,7 +42,16 @@ const layoutroutes: Routes = [
       {path: 'team',          component: TeamComponent},
       {path: 'board',         component: BoardComponent},
       {path: 'workgroup',     component: WorkgroupComponent},
-      {path: 'surveyform',      component: SurveyFormComponent}
+      {path: 'surveyform',      component: SurveyFormComponent},
+      /* 인사시스템 */
+      {path: 'hrmtype',      component: HrmTypeComponent},
+      {path: 'relationcode',      component: HrmRelationCodeComponent},
+      {path: 'appointmentcode',     component: AppointmentCodeComponent},
+      {path: 'appointmentledger',   component: LedgerComponent},
+      {path: 'employee',      component: EmployeeMasterComponent},
+      {path: 'deptemployeelist',      component: DeptEmployeeListComponent},
+      {path: 'dutycode',      component: DutyCodeComponent},
+      {path: 'dutyapplication',      component: DutyApplicationComponent},
     ]
   }
 ];
