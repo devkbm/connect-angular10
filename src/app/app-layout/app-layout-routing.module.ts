@@ -24,6 +24,9 @@ import { DutyApplicationComponent } from '../hrm/duty/component/duty-application
 import { DutyCodeComponent } from '../hrm/duty/component/duty-code/duty-code.component';
 import { EmployeeMasterComponent } from '../hrm/employee/component/basic-info/employee-master.component';
 import { DeptEmployeeListComponent } from '../hrm/employee/component/dept-employee-list/dept-employee-list.component';
+import { PayitemComponent } from './../hrm/payitem/component/pay-item/payitem.component';
+import { PayTableComponent } from '../hrm/payitem/component/paytable/pay-table.component';
+
 
 const layoutroutes: Routes = [
   {
@@ -52,6 +55,8 @@ const layoutroutes: Routes = [
       {path: 'deptemployeelist',      component: DeptEmployeeListComponent},
       {path: 'dutycode',      component: DutyCodeComponent},
       {path: 'dutyapplication',      component: DutyApplicationComponent},
+      {path: 'payitem',      component: PayitemComponent},
+      {path: 'paytable',      component: PayTableComponent}
     ]
   }
 ];

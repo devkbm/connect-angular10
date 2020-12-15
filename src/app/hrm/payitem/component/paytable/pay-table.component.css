@@ -15,7 +15,3 @@
 .grid-wrapper {
   height: calc(100% - 140px)
 }
-
-[nz-button] {
-  margin: auto;
-}

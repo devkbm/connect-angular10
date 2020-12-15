@@ -26,6 +26,7 @@ import { WorkgroupModule } from './cooperation/workgroup/workgroup.module';
 import { AppointmentModule } from './hrm/appointment/appointment.module';
 import { DutyModule } from './hrm/duty/duty.module';
 import { EmployeeModule } from './hrm/employee/employee.module';
+import { PayitemModule } from './hrm/payitem/payitem.module';
 
 registerLocaleData(ko);
 
@@ -54,7 +55,8 @@ registerLocaleData(ko);
     WorkgroupModule,
     AppointmentModule,
     EmployeeModule,
-    DutyModule
+    DutyModule,
+    PayitemModule
   ],
   providers: [
     { provide: NZ_I18N, useValue: ko_KR },
