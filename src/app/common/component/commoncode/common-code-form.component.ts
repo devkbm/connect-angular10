@@ -25,7 +25,7 @@ export class CommonCodeFormComponent extends FormBase implements OnInit {
 
   fg: FormGroup;
   nodeItems: CommonCodeHierarchy[] = [];
-
+  systemTypeCodeList: CommonCode[];
   /**
    * Xs < 576px span size
    * Sm >= 576px span size
@@ -52,6 +52,7 @@ export class CommonCodeFormComponent extends FormBase implements OnInit {
   ngOnInit(): void {
     this.fg = this.fb.group({
       id                      : [ null ],
+      systemTypeCode          : [ null ],
       parentId                : [ null ],
       code                    : [ null, [ Validators.required ] ],
       codeName                : [ null, [ Validators.required ] ],
@@ -68,27 +69,31 @@ export class CommonCodeFormComponent extends FormBase implements OnInit {
     this.newForm(null);
 
     this.getCommonCodeHierarchy();
+    this.getSystemTypeCode();
   }
 
-  public newForm(parentId): void {
+  newForm(parentId): void {
     this.formType = FormType.NEW;
 
     this.fg.reset();
     this.fg.get('code').enable();
+    this.fg.get('systemTypeCode').enable();
     this.fg.get('parentId').setValue(parentId);
     this.fg.get('fromDate').setValue(new Date());
     this.fg.get('toDate').setValue(new Date(9999, 11, 31));
   }
 
-  public modifyForm(formData: CommonCode): void {
+  modifyForm(formData: CommonCode): void {
     this.formType = FormType.MODIFY;
 
     this.fg.get('code').disable();
+    this.fg.get('systemTypeCode').disable();
+    //this.fg.get('parentId').disable();
 
     this.fg.patchValue(formData);
   }
 
-  public getCommonCode(id: string): void {
+  getCommonCode(id: string): void {
     this.commonCodeService
         .getCommonCode(id)
         .subscribe(
@@ -125,9 +130,9 @@ export class CommonCodeFormComponent extends FormBase implements OnInit {
             console.log('완료');
             }
         );
-}
+  }
 
-  public submitCommonCode(): void {
+  submitCommonCode(): void {
     this.commonCodeService
         .registerCommonCode(this.fg.getRawValue())
         .subscribe(
@@ -142,7 +147,7 @@ export class CommonCodeFormComponent extends FormBase implements OnInit {
         );
   }
 
-  public deleteCommonCode(): void {
+  deleteCommonCode(): void {
     this.commonCodeService
         .deleteCommonCode(this.fg.get('id').value)
         .subscribe(
@@ -157,8 +162,22 @@ export class CommonCodeFormComponent extends FormBase implements OnInit {
         );
   }
 
-  public closeForm(): void {
+  closeForm(): void {
     this.formClosed.emit(this.fg.getRawValue());
+  }
+
+  getSystemTypeCode(): void {
+    this.commonCodeService
+      .getCommonCodeListByParentId('COMSYSTEM')
+      .subscribe(
+          (model: ResponseList<CommonCode>) => {
+            this.systemTypeCodeList = model.data;
+          },
+          (err) => {
+            console.log(err);
+          },
+          () => {}
+      );
   }
 
 }

@@ -4,15 +4,15 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { FormBase, FormType } from 'src/app/common/form/form-base';
 import { ResponseObject } from 'src/app/common/model/response-object';
 import { AppAlarmService } from 'src/app/common/service/app-alarm.service';
-import { PayTable } from '../../model/pay-table';
+import { PayTableItem } from '../../model/pay-table-item';
 import { PayTableService } from '../../service/pay-table.service';
 
 @Component({
-  selector: 'app-pay-table-form',
-  templateUrl: './pay-table-form.component.html',
-  styleUrls: ['./pay-table-form.component.css']
+  selector: 'app-pay-table-item-form',
+  templateUrl: './pay-table-item-form.component.html',
+  styleUrls: ['./pay-table-item-form.component.css']
 })
-export class PayTableFormComponent extends FormBase implements OnInit {
+export class PayTableItemFormComponent extends FormBase implements OnInit {
 
   fg: FormGroup;
 
@@ -22,41 +22,44 @@ export class PayTableFormComponent extends FormBase implements OnInit {
 
   ngOnInit() {
     this.fg = this.fb.group({
+      payTableId: [ null, [ Validators.required ] ],
       id        : [ null, [ Validators.required ] ],
-      name      : [ null, [ Validators.required ] ],
-      enabled   : [ null],
-      typeCode1 : [ null],
-      typeCode2 : [ null],
-      typeCode3 : [ null],
+      code1     : [ null],
+      code2     : [ null],
+      code3     : [ null],
+      ammount   : [ null],
       comment   : [ null]
     });
 
-    this.newForm();
+    this.newForm(null);
   }
 
-  newForm(): void {
+  newForm(payTableId: string): void {
     this.formType = FormType.NEW;
 
     this.fg.reset();
+    this.fg.get('payTableId').setValue(payTableId);
+    this.fg.get('payTableId').disable();
     this.fg.get('id').disable();
   }
 
-  public modifyForm(formData: PayTable) {
+  public modifyForm(formData: PayTableItem) {
     this.formType = FormType.MODIFY;
 
     this.fg.patchValue(formData);
+    this.fg.get('payTableId').disable();
     this.fg.get('id').disable();
   }
 
-  public getForm(id: string): void {
+  public getForm(payTableId: string, id: string): void {
     this.payTableService
-        .getPayTable(id)
+        .getPayTableItem(payTableId, id)
         .subscribe(
-          (model: ResponseObject<PayTable>) => {
+          (model: ResponseObject<PayTableItem>) => {
             if ( model.total > 0 ) {
               this.modifyForm(model.data);
             } else {
-              this.newForm();
+              this.newForm(null);
             }
             this.appAlarmService.changeMessage(model.message);
           },
@@ -69,9 +72,9 @@ export class PayTableFormComponent extends FormBase implements OnInit {
 
   public submitForm(): void {
     this.payTableService
-        .savePayTable(this.fg.getRawValue())
+        .savePayTableItem(this.fg.getRawValue())
         .subscribe(
-          (model: ResponseObject<PayTable>) => {
+          (model: ResponseObject<PayTableItem>) => {
             this.appAlarmService.changeMessage(model.message);
             this.formSaved.emit(this.fg.getRawValue());
           },
@@ -82,11 +85,11 @@ export class PayTableFormComponent extends FormBase implements OnInit {
         );
   }
 
-  public deleteForm(id: string): void {
+  public deleteForm(payTableId: string, id: string): void {
     this.payTableService
-        .deletePayTable(id)
+        .deletePayTableItem(payTableId, id)
         .subscribe(
-            (model: ResponseObject<PayTable>) => {
+            (model: ResponseObject<PayTableItem>) => {
             this.appAlarmService.changeMessage(model.message);
             this.formDeleted.emit(this.fg.getRawValue());
             },

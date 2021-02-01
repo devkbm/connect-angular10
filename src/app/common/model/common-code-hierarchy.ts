@@ -1,5 +1,6 @@
 export class CommonCodeHierarchy {
     id: string;
+    systemTypeCode: string;
     code: string;
     codeName: string;
     codeNameAbbreviation: string;

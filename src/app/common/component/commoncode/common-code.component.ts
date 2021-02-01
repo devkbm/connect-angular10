@@ -3,6 +3,9 @@ import { Location } from '@angular/common';
 import { CommonCodeFormComponent } from './common-code-form.component';
 import { CommonCodeTreeComponent } from './common-code-tree.component';
 import { AppBase } from '../../app/app-base';
+import { CommonCodeService } from '../../service/common-code.service';
+import { CommonCode } from '../../model/common-code';
+import { ResponseList } from '../../model/response-list';
 
 @Component({
   selector: 'app-common-code',
@@ -11,44 +14,63 @@ import { AppBase } from '../../app/app-base';
 })
 export class CommonCodeComponent extends AppBase implements OnInit {
 
-    queryKey = 'programCode';
-    queryValue = '';
-    selectedCode;
+  optionList: CommonCode[];
 
-    @ViewChild('commonCodeTree', {static: true})
-    tree: CommonCodeTreeComponent;
+  queryKey = 'COM';
+  queryValue = '';
+  selectedCode;
 
-    @ViewChild('commonCodeForm', {static: false})
-    form: CommonCodeFormComponent;
+  @ViewChild('commonCodeTree', {static: true})
+  tree: CommonCodeTreeComponent;
 
-    constructor(location: Location) {
-        super(location);
-    }
+  @ViewChild('commonCodeForm', {static: false})
+  form: CommonCodeFormComponent;
 
-    ngOnInit(): void {
-        this.tree.getCommonCodeHierarchy();
-    }
+  constructor(location: Location,
+              private commonCodeService: CommonCodeService) {
+      super(location);
+  }
 
-    public getCommonCodeTree(): void {
-        this.tree.getCommonCodeHierarchy();
-        this.form.getCommonCodeHierarchy();
-    }
+  ngOnInit(): void {
+    this.getSystemTypeCode();
+  }
 
-    public newForm(): void {
-        this.form.newForm(this.selectedCode);
-    }
+  public getCommonCodeTree(): void {
+    this.tree.getCommonCodeHierarchy(this.queryKey);
+    this.form.getCommonCodeHierarchy();
+  }
 
-    public saveCommonCode(): void {
-        this.form.submitCommonCode();
-    }
+  public newForm(): void {
+      this.form.newForm(this.selectedCode);
+  }
 
-    public deleteCommonCode(): void {
-        this.form.deleteCommonCode();
-    }
+  public saveCommonCode(): void {
+      this.form.submitCommonCode();
+  }
 
-    public selectedItem(item): void {
-        this.selectedCode = item.id;
-        this.form.getCommonCode(item.id);
-    }
+  public deleteCommonCode(): void {
+      this.form.deleteCommonCode();
+  }
+
+  public selectedItem(item): void {
+      this.selectedCode = item.id;
+      this.form.getCommonCode(item.id);
+  }
+
+  public getSystemTypeCode(): void {
+    this.commonCodeService
+      .getCommonCodeListByParentId('COMSYSTEM')
+      .subscribe(
+          (model: ResponseList<CommonCode>) => {
+            this.optionList = model.data;
+            this.queryKey = this.optionList[0].code;
+            this.tree.getCommonCodeHierarchy(this.queryKey);
+          },
+          (err) => {
+            console.log(err);
+          },
+          () => {}
+      );
+  }
 
 }

@@ -29,24 +29,28 @@ export class CommonCodeTreeComponent implements OnInit {
         console.log('CommonCodeTreeComponent init');
     }
 
-    getCommonCodeHierarchy(): void {
-        this.commonCodeService
-            .getCommonCodeHierarchy()
-            .subscribe(
-                (model: ResponseList<CommonCodeHierarchy>) => {
-                    if ( model.total > 0 ) {
-                        this.nodeItems = model.data;
-                    } else {
-                        this.nodeItems = [];
-                    }
-                },
-                (err) => {
-                console.log(err);
-                },
-                () => {
-                console.log('완료');
-                }
-            );
+    getCommonCodeHierarchy(systemTypeCode: string): void {
+      const params = {
+        systemTypeCode: systemTypeCode
+      };
+
+      this.commonCodeService
+          .getCommonCodeHierarchy(params)
+          .subscribe(
+              (model: ResponseList<CommonCodeHierarchy>) => {
+                  if ( model.total > 0 ) {
+                      this.nodeItems = model.data;
+                  } else {
+                      this.nodeItems = [];
+                  }
+              },
+              (err) => {
+              console.log(err);
+              },
+              () => {
+              console.log('완료');
+              }
+          );
     }
 
     nzClick(event: NzFormatEmitEvent): void {

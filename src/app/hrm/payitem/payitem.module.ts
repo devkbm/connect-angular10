@@ -1,3 +1,4 @@
+import { PayTableGridComponent } from './component/paytable/pay-table-grid.component';
 import { PayTableComponent } from './component/paytable/pay-table.component';
 import { PayItemGridComponent } from './component/pay-item/pay-item-grid.component';
 import { NgModule } from '@angular/core';
@@ -14,6 +15,8 @@ import { CheckboxRendererComponent } from 'src/app/common/grid/renderer/checkbox
 import { PayItemFormComponent } from './component/pay-item/pay-item-form.component';
 import { PayitemComponent } from './component/pay-item/payitem.component';
 import { PayTableFormComponent } from './component/paytable/pay-table-form.component';
+import { PayTableItemFormComponent } from './component/paytable/pay-table-item-form.component';
+import { PayTableItemGridComponent } from './component/paytable/pay-table-item-grid.component';
 
 
 @NgModule({
@@ -30,6 +33,9 @@ import { PayTableFormComponent } from './component/paytable/pay-table-form.compo
     PayItemGridComponent,
     PayitemComponent,
     PayTableFormComponent,
+    PayTableGridComponent,
+    PayTableItemFormComponent,
+    PayTableItemGridComponent,
     PayTableComponent
   ],
   providers: [

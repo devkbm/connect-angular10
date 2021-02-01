@@ -1,5 +1,6 @@
-export class CommonCode {    
+export class CommonCode {
     id: string;
+    systemTypeCode: string;
     code: string;
     codeName: string;
     codeNameAbbreviation: string;
@@ -9,6 +10,6 @@ export class CommonCode {
     hierarchyLevel: number;
     fixedLengthYn: boolean;
     codeLength: number;
-    cmt: string;    
-    parentId: string;    
+    cmt: string;
+    parentId: string;
 }

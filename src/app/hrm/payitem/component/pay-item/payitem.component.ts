@@ -16,13 +16,14 @@ export class PayitemComponent extends AppBase implements OnInit {
 
   drawerVisible = false;
 
-  queryKey = 'dutyCode';
+  queryKey = 'code';
   queryValue = '';
 
   optionList = [
-    { label: '근무코드', value: 'dutyCode' },
-    { label: '급여항목', value: 'code' }
+    { label: '급여항목', value: 'code' },
+    { label: '급여항목2', value: 'code' }
   ];
+
   constructor(location: Location) {
     super(location);
   }
@@ -55,13 +56,8 @@ export class PayitemComponent extends AppBase implements OnInit {
     this.openDrawer();
   }
 
-  savePayItem() {
-    this.form.submitForm();
-  }
-
   deletePayItem() {
     const item = this.grid.getSelectedRows()[0];
-    console.log(item);
     this.form.deleteForm(item.code);
   }
 
@@ -70,7 +66,6 @@ export class PayitemComponent extends AppBase implements OnInit {
   }
 
   editDrawerOpen(item) {
-    console.log(item);
     this.form.getForm(item.code);
     this.openDrawer();
   }

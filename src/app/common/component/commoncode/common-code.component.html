@@ -3,9 +3,14 @@
 <!--조회 조건-->
 <div nz-row class="btn-group">
   <div nz-col [nzSpan]="12">
-    <nz-input-group nzSearch [nzSuffix]="suffixIconSearch">
-      <input type="text" style="ime-mode:normal;" [(ngModel)]="queryValue" nz-input placeholder="input search text">
+    <nz-input-group nzSearch [nzAddOnBefore]="addOnBeforeTemplate" [nzSuffix]="suffixIconSearch">
+      <input type="text" [(ngModel)]="queryValue" nz-input placeholder="input search text">
     </nz-input-group>
+    <ng-template #addOnBeforeTemplate>
+      <nz-select [(ngModel)]="queryKey">
+        <nz-option *ngFor="let option of optionList" [nzValue]="option.code" [nzLabel]="option.codeName"></nz-option>
+      </nz-select>
+    </ng-template>
     <ng-template #suffixIconSearch>
       <i nz-icon nzType="search"></i>
     </ng-template>

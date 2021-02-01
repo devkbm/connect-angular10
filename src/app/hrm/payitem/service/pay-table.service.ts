@@ -9,6 +9,7 @@ import { ResponseObject } from '../../../common/model/response-object';
 import { ResponseList } from '../../../common/model/response-list';
 import { PayItem } from '../model/pay-item';
 import { PayTable } from '../model/pay-table';
+import { PayTableItem } from '../model/pay-table-item';
 
 @Injectable({
   providedIn: 'root'
@@ -33,7 +34,7 @@ export class PayTableService extends DataService {
   }
 
   /**
-   * 급여항목을 조회한다.
+   * 급여테이블을 조회한다.
    * @param id
    */
   getPayTable(id: string): Observable<ResponseObject<PayTable>> {
@@ -50,15 +51,15 @@ export class PayTableService extends DataService {
 
   /**
    * 급여항목을 저장한다.
-   * @param payItem 근태신청정보
+   * @param entity 근태신청정보
    */
-  savePayTable(payItem: PayItem): Observable<ResponseObject<PayTable>> {
+  savePayTable(entity: PayItem): Observable<ResponseObject<PayTable>> {
     const url = `${this.API_URL}/paytable`;
     const options = {
       headers: this.getAuthorizedHttpHeaders(),
       withCredentials: true
     };
-    return this.http.post<ResponseObject<PayTable>>(url, payItem, options).pipe(
+    return this.http.post<ResponseObject<PayTable>>(url, entity, options).pipe(
       catchError(this.handleError<ResponseObject<PayTable>>('savePayTable', null))
     );
   }
@@ -77,6 +78,71 @@ export class PayTableService extends DataService {
               .delete<ResponseObject<PayTable>>(url, options)
               .pipe(
                 catchError(this.handleError<ResponseObject<PayTable>>('deletePayTable', null))
+              );
+  }
+
+
+  /**
+   * 급여테이블항목을 조회한다.
+   * @param id
+   */
+  getPayTableItemList(payTableId: any): Observable<ResponseList<PayTable>> {
+    const url = `${this.API_URL}/paytable/${payTableId}/item`;
+    const options = {
+      headers: this.getAuthorizedHttpHeaders(),
+      withCredentials: true
+    };
+
+    return this.http.get<ResponseList<PayTable>>(url, options).pipe(
+      catchError(this.handleError<ResponseList<PayTable>>('getPayTableList', null))
+    );
+  }
+
+  /**
+   * 급여테이블항목을 조회한다.
+   * @param id
+   */
+  getPayTableItem(paytableId: string, id: string): Observable<ResponseObject<PayTableItem>> {
+    const url = `${this.API_URL}/paytable/${paytableId}/item/${id}`;
+    const options = {
+      headers: this.getAuthorizedHttpHeaders(),
+      withCredentials: true
+    };
+
+    return this.http.get<ResponseObject<PayTableItem>>(url, options).pipe(
+      catchError(this.handleError<ResponseObject<PayTableItem>>('getPayTableItem', null))
+    );
+  }
+
+  /**
+   * 급여테이블항목을 저장한다.
+   * @param entity 급여테이블항목
+   */
+  savePayTableItem(entity: PayTableItem): Observable<ResponseObject<PayTableItem>> {
+    const url = `${this.API_URL}/paytable/item`;
+    const options = {
+      headers: this.getAuthorizedHttpHeaders(),
+      withCredentials: true
+    };
+    return this.http.post<ResponseObject<PayTableItem>>(url, entity, options).pipe(
+      catchError(this.handleError<ResponseObject<PayTableItem>>('savePayTableItem', null))
+    );
+  }
+
+  /**
+   * 급여테이블항목을 삭제한다.
+   * @param id
+   */
+  deletePayTableItem(paytableId: string, id: string): Observable<ResponseObject<PayTableItem>> {
+    const url = `${this.API_URL}/paytable/${paytableId}/item/${id}`;
+    const options = {
+      headers: this.getAuthorizedHttpHeaders(),
+      withCredentials: true
+    };
+    return this.http
+              .delete<ResponseObject<PayTableItem>>(url, options)
+              .pipe(
+                catchError(this.handleError<ResponseObject<PayTableItem>>('deletePayTableItem', null))
               );
   }
 }
