@@ -1,129 +1,140 @@
 {{fg.value | json}}
 <form nz-form [formGroup]="fg" nzLayout="vertical">
 
-    <!-- 1 row -->
-    <div nz-row nzGutter="8">
-        <div nz-col nzSpan="12">
-             <!--상위부서코드 필드-->
-            <nz-form-item class="form-item">
-                <nz-form-label
-                    nzFor="parentDeptCode"
-                    [nzXs]="formLabelXs" [nzSm]="formLabelSm">
-                    상위 부서코드
-                </nz-form-label>
-                
-                <nz-form-control [nzXs]="formControlXs" [nzSm]="formControlSm" >
-                    <nz-tree-select
-                        id="parentDeptCode"
-                        [nzNodes]="deptHierarchy"
-                        [nzAllowClear]="true"            
-                        [nzPlaceHolder]="'상위 부서 없음'"    
-                        formControlName="parentDeptCode">
-                    </nz-tree-select>
-                </nz-form-control>
-            </nz-form-item>
-        </div>
-        <div nz-col nzSpan="12">
-            <!--부서코드 필드 -->
-            <nz-form-item class="form-item">
-                <nz-form-label nzFor="deptCode" nzRequired [nzXs]="formLabelXs" [nzSm]="formLabelSm">부서코드</nz-form-label>
-                <nz-form-control nzHasFeedback [nzXs]="formControlXs" [nzSm]="formControlSm" [nzErrorTip]="errorTpl">
-                    <input nz-input id="deptCode" formControlName="deptCode" placeholder="부서코드를 입력해주세요.">
-                    <ng-template #errorTpl let-control>
-                        <ng-container *ngIf="control.hasError('required')">
-                            필수 입력 값입니다.
-                        </ng-container>
-                        <ng-container *ngIf="control.hasError('exists')">
-                            기존 코드가 존재합니다.
-                        </ng-container>
-                    </ng-template>
-                </nz-form-control>
-            </nz-form-item>    
-        </div>
-    </div>
-   
-    <!-- 2 row -->
-    <div nz-row nzGutter="8">
-        <div nz-col nzSpan="12">
-            <!--부서코드명(한글) 필드-->
-            <nz-form-item class="form-item">
-                <nz-form-label nzFor="deptNameKorean" nzRequired [nzXs]="formLabelXs" [nzSm]="formLabelSm">부서코드명(한글)</nz-form-label>
-                <nz-form-control nzHasFeedback [nzXs]="formControlXs" [nzSm]="formControlSm" [nzErrorTip]="errorTpl">
-                    <input nz-input id="deptNameKorean" formControlName="deptNameKorean" placeholder="부서코드명(한글)을 입력해주세요.">
-                    <ng-template #errorTpl let-control>
-                        <ng-container *ngIf="control.hasError('required')">
-                            필수 입력 값입니다.
-                        </ng-container>
-                    </ng-template>
-                </nz-form-control>
-            </nz-form-item>
-        </div>
+  <!-- 1 row -->
+  <div nz-row nzGutter="8">
+    <div nz-col nzSpan="12">
+      <!--상위부서코드 필드-->
+      <nz-form-item class="form-item">
+        <nz-form-label
+            nzFor="parentDeptCode"
+            [nzXs]="formLabelXs" [nzSm]="formLabelSm">
+            상위 부서코드
+        </nz-form-label>
 
-        <div nz-col nzSpan="12">
-            <!--부서코드명(한글) 약어 필드-->
-            <nz-form-item class="form-item">
-                <nz-form-label nzFor="deptAbbreviationKorean" [nzXs]="formLabelXs" [nzSm]="formLabelSm">부서코드명(한글) 약어</nz-form-label>
-                <nz-form-control [nzXs]="formControlXs" [nzSm]="formControlSm">
-                    <input nz-input id="deptAbbreviationKorean" formControlName="deptAbbreviationKorean" placeholder="부서코드명(한글) 약어를 입력해주세요.">                        
-                </nz-form-control>
-            </nz-form-item>    
-        </div>
-    </div>
-    
-    <!-- 3 row -->
-    <div nz-row nzGutter="8">
-        <div nz-col nzSpan="12">
-            <!--부서코드명(영문) 필드-->
-            <nz-form-item class="form-item">
-                <nz-form-label nzFor="deptNameEnglish" nzRequired [nzXs]="formLabelXs" [nzSm]="formLabelSm">부서코드명(영문)</nz-form-label>
-                <nz-form-control [nzXs]="formControlXs" [nzSm]="formControlSm">
-                    <input nz-input id="deptNameEnglish" formControlName="deptNameEnglish" placeholder="부서코드명(영문)을 입력해주세요.">                    
-                </nz-form-control>
-            </nz-form-item>
-        </div>
-
-        <div nz-col nzSpan="12">
-            <!--부서코드명(영문) 약어 필드-->
-            <nz-form-item class="form-item">
-                <nz-form-label nzFor="deptAbbreviationEnglish" [nzXs]="formLabelXs" [nzSm]="formLabelSm">부서코드명(영문) 약어</nz-form-label>
-                <nz-form-control [nzXs]="formControlXs" [nzSm]="formControlSm">
-                    <input nz-input id="deptAbbreviationEnglish" formControlName="deptAbbreviationEnglish" placeholder="부서코드명(영문) 약어를 입력해주세요.">
-                </nz-form-control>
-            </nz-form-item>    
-        </div>
+        <nz-form-control [nzXs]="formControlXs" [nzSm]="formControlSm" >
+            <nz-tree-select
+                id="parentDeptCode"
+                [nzNodes]="deptHierarchy"
+                [nzAllowClear]="true"
+                [nzPlaceHolder]="'상위 부서 없음'"
+                formControlName="parentDeptCode">
+            </nz-tree-select>
+        </nz-form-control>
+      </nz-form-item>
     </div>
 
-    <!-- 4 row -->        
-    <div nz-row nzGutter="8">
-        <div nz-col nzSpan="12">
-            <!--시작일 필드-->
-            <nz-form-item class="form-item">
-                <nz-form-label nzFor="fromDate" [nzXs]="formLabelXs" [nzSm]="formLabelSm">시작일</nz-form-label>
-                <nz-form-control [nzXs]="formControlXs" [nzSm]="formControlSm">
-                    <nz-date-picker id="fromDate" formControlName="fromDate" nzFormat="yyyy-MM-dd" style="width: 130px"></nz-date-picker>            
-                </nz-form-control>
-            </nz-form-item>   
-        </div>
-
-        <div nz-col nzSpan="12">
-            <!--종료일 필드-->
-            <nz-form-item class="form-item">
-                <nz-form-label nzFor="toDate" [nzXs]="formLabelXs" [nzSm]="formLabelSm">종료일</nz-form-label>
-                <nz-form-control [nzXs]="formControlXs" [nzSm]="formControlSm">
-                    <nz-date-picker id="toDate" formControlName="toDate" nzFormat="yyyy-MM-dd" style="width: 130px"></nz-date-picker>                        
-                </nz-form-control>
-            </nz-form-item>
-        </div>
+    <div nz-col nzSpan="12">
+      <!--부서코드 필드 -->
+      <nz-form-item class="form-item">
+        <nz-form-label nzFor="deptCode" nzRequired [nzXs]="formLabelXs" [nzSm]="formLabelSm">부서코드</nz-form-label>
+        <nz-form-control nzHasFeedback [nzXs]="formControlXs" [nzSm]="formControlSm" [nzErrorTip]="errorTpl">
+            <input nz-input id="deptCode" formControlName="deptCode" placeholder="부서코드를 입력해주세요.">
+            <ng-template #errorTpl let-control>
+                <ng-container *ngIf="control.hasError('required')">
+                    필수 입력 값입니다.
+                </ng-container>
+                <ng-container *ngIf="control.hasError('exists')">
+                    기존 코드가 존재합니다.
+                </ng-container>
+            </ng-template>
+        </nz-form-control>
+      </nz-form-item>
     </div>
-     
-    <!-- 5 row -->        
+  </div>
+
+  <!-- 2 row -->
+  <div nz-row nzGutter="8">
+    <div nz-col nzSpan="12">
+      <!--부서코드명(한글) 필드-->
+      <nz-form-item class="form-item">
+        <nz-form-label nzFor="deptNameKorean" nzRequired [nzXs]="formLabelXs" [nzSm]="formLabelSm">부서코드명(한글)</nz-form-label>
+        <nz-form-control nzHasFeedback [nzXs]="formControlXs" [nzSm]="formControlSm" [nzErrorTip]="errorTpl">
+          <input nz-input id="deptNameKorean" formControlName="deptNameKorean" placeholder="부서코드명(한글)을 입력해주세요.">
+          <ng-template #errorTpl let-control>
+              <ng-container *ngIf="control.hasError('required')">
+                  필수 입력 값입니다.
+              </ng-container>
+          </ng-template>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+
+    <div nz-col nzSpan="12">
+      <!--부서코드명(한글) 약어 필드-->
+      <nz-form-item class="form-item">
+        <nz-form-label nzFor="deptAbbreviationKorean" [nzXs]="formLabelXs" [nzSm]="formLabelSm">부서코드명(한글) 약어</nz-form-label>
+        <nz-form-control [nzXs]="formControlXs" [nzSm]="formControlSm" [nzErrorTip]="errorTpl">
+          <input nz-input id="deptAbbreviationKorean" formControlName="deptAbbreviationKorean" placeholder="부서코드명(한글) 약어를 입력해주세요.">
+          <ng-template #errorTpl let-control>
+            <ng-container *ngIf="control.hasError('required')">
+                필수 입력 값입니다.
+            </ng-container>
+          </ng-template>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+
+  <!-- 3 row -->
+  <div nz-row nzGutter="8">
+    <div nz-col nzSpan="12">
+      <!--부서코드명(영문) 필드-->
+      <nz-form-item class="form-item">
+          <nz-form-label nzFor="deptNameEnglish" nzRequired [nzXs]="formLabelXs" [nzSm]="formLabelSm">부서코드명(영문)</nz-form-label>
+          <nz-form-control [nzXs]="formControlXs" [nzSm]="formControlSm">
+              <input nz-input id="deptNameEnglish" formControlName="deptNameEnglish" placeholder="부서코드명(영문)을 입력해주세요.">
+          </nz-form-control>
+      </nz-form-item>
+    </div>
+
+    <div nz-col nzSpan="12">
+      <!--부서코드명(영문) 약어 필드-->
+      <nz-form-item class="form-item">
+        <nz-form-label nzFor="deptAbbreviationEnglish" [nzXs]="formLabelXs" [nzSm]="formLabelSm">부서코드명(영문) 약어</nz-form-label>
+        <nz-form-control [nzXs]="formControlXs" [nzSm]="formControlSm">
+          <input nz-input id="deptAbbreviationEnglish" formControlName="deptAbbreviationEnglish" placeholder="부서코드명(영문) 약어를 입력해주세요.">
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+
+  <!-- 4 row -->
+  <div nz-row nzGutter="8">
+    <div nz-col nzSpan="12">
+      <!--시작일 필드-->
+      <nz-form-item class="form-item">
+        <nz-form-label nzFor="fromDate" [nzXs]="formLabelXs" [nzSm]="formLabelSm">시작일</nz-form-label>
+        <nz-form-control [nzXs]="formControlXs" [nzSm]="formControlSm" [nzErrorTip]="errorTpl">
+          <nz-date-picker id="fromDate" formControlName="fromDate" nzFormat="yyyy-MM-dd" style="width: 130px"></nz-date-picker>
+          <ng-template #errorTpl let-control>
+            <ng-container *ngIf="control.hasError('required')">
+                필수 입력 값입니다.
+            </ng-container>
+          </ng-template>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+
+    <div nz-col nzSpan="12">
+      <!--종료일 필드-->
+      <nz-form-item class="form-item">
+        <nz-form-label nzFor="toDate" [nzXs]="formLabelXs" [nzSm]="formLabelSm">종료일</nz-form-label>
+        <nz-form-control [nzXs]="formControlXs" [nzSm]="formControlSm">
+            <nz-date-picker id="toDate" formControlName="toDate" nzFormat="yyyy-MM-dd" style="width: 130px"></nz-date-picker>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+
+    <!-- 5 row -->
     <div nz-row nzGutter="8">
         <div nz-col nzSpan="12">
             <!--출력순번 필드-->
             <nz-form-item class="form-item">
                 <nz-form-label nzFor="seq" nzRequired [nzXs]="formLabelXs" [nzSm]="formLabelSm">출력 순번</nz-form-label>
                 <nz-form-control [nzXs]="formControlXs" [nzSm]="formControlSm">
-                    <nz-input-number id="seq" formControlName="seq" [nzMin]="0" [nzMax]="9999" [nzStep]="1"></nz-input-number>                             
+                    <nz-input-number id="seq" formControlName="seq" [nzMin]="0" [nzMax]="9999" [nzStep]="1"></nz-input-number>
                 </nz-form-control>
             </nz-form-item>
         </div>
@@ -136,8 +147,8 @@
                 </nz-form-control>
             </nz-form-item>
         </div>
-    </div>    
-            
+    </div>
+
 </form>
 
 <!--<div class="footer">

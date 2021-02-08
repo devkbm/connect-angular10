@@ -61,12 +61,12 @@ export class DeptFormComponent extends FormBase implements OnInit {
                                   asyncValidators: [existingDeptValidator(this.deptService)],
                                   updateOn: 'blur'
                                 }),
-      deptNameKorean          : [ null ],
-      deptAbbreviationKorean  : [ null, [ Validators.required ] ],
+      deptNameKorean          : [ null, [ Validators.required ] ],
+      deptAbbreviationKorean  : [ null ],
       deptNameEnglish         : [ null, [ Validators.required ] ],
       deptAbbreviationEnglish : [ null ],
-      fromDate                : [ null ],
-      toDate                  : [ null ],
+      fromDate                : [ null, [ Validators.required ] ],
+      toDate                  : [ null, [ Validators.required ] ],
       seq                     : [ 1    ],
       comment                 : [ null ]
     });
