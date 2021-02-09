@@ -1,4 +1,4 @@
-<nz-page-header (nzBack)="goBack()" nzBackIcon nzTitle="리소스 등록" nzSubtitle="This is a subtitle"> </nz-page-header>
+<nz-page-header (nzBack)="goBack()" nzBackIcon nzTitle="공휴일 등록" nzSubtitle="This is a subtitle"> </nz-page-header>
 
 <div nz-row class="btn-group">
   <div nz-col [nzSpan]="12">
@@ -7,10 +7,8 @@
     </nz-input-group>
     <ng-template #addOnBeforeTemplate>
         <nz-select [(ngModel)]="queryKey">
-          <nz-option [nzLabel]="'리소스코드'" [nzValue]="'resourceCode'"></nz-option>
-          <nz-option [nzLabel]="'리소스명'"   [nzValue]="'resourceName'"></nz-option>
-          <nz-option [nzLabel]="'URL'"        [nzValue]="'url'"></nz-option>
-          <nz-option [nzLabel]="'설명'"       [nzValue]="'description'"></nz-option>
+          <nz-option [nzLabel]="'휴일명'" [nzValue]="'resourceCode'"></nz-option>
+          <nz-option [nzLabel]="'비고'"   [nzValue]="'description'"></nz-option>
         </nz-select>
       </ng-template>
     <ng-template #suffixIconSearch>
@@ -36,7 +34,6 @@
     </button>
   </div>
 </div>
-
 
 <h3 class="pgm-title">공휴일 목록</h3>
 

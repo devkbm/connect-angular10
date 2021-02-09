@@ -67,7 +67,7 @@ export class DeptFormComponent extends FormBase implements OnInit {
       deptAbbreviationEnglish : [ null ],
       fromDate                : [ null, [ Validators.required ] ],
       toDate                  : [ null, [ Validators.required ] ],
-      seq                     : [ 1    ],
+      seq                     : [ 1,    [ Validators.required ] ],
       comment                 : [ null ]
     });
 
